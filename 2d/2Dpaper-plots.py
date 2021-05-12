@@ -245,6 +245,7 @@ def quiver_contour(lam_lst,bias_para,post_para_lst,k,cont):
     else:
         plt.tight_layout() #doesn't work well with subplots colorbar
     plt.show()
+    plt.savefig('2d-dynamics.png')
 
 
 lam_lst = [1,5,20,1,5,20] #list of lambda values to consider
