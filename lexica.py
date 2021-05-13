@@ -1,8 +1,9 @@
-##generation of lexica and prior
+##This script generates all possible lexica of the types we consider, and their corresponding prior
 import numpy as np
 from itertools import product,combinations,combinations_with_replacement
 
 def get_lexica(s_amount,m_amount,mutual_exclusivity=True):
+    """Generates all possible non-contradictory or tautological lexica for a given number of states and messages"""
     columns = list(product([0.,1.],repeat=s_amount))
     columns.remove((0,0,0)) #remove message false of all states
     columns.remove((1,1,1)) #remove message true of all states
@@ -15,7 +16,6 @@ def get_lexica(s_amount,m_amount,mutual_exclusivity=True):
             out.append(lex)
     else:
         matrix = list(product(columns,repeat=m_amount)) #If we allow for symmetric lexica
-#        matrix = list(combinations_with_replacement(columns,m_amount)) #only 112 types
         out = []
         for mrx in matrix:
             lex = np.array([mrx[i] for i in xrange(s_amount)])
@@ -24,6 +24,7 @@ def get_lexica(s_amount,m_amount,mutual_exclusivity=True):
     return out 
 
 def get_lexica_bins(lexica_list):
+    """Gathers lexica by type: lexica that are permutations of each other are bundled together. This is occasionally convenient for analyses over lexica types"""
     concepts = [[0,0,1],[0,1,0],[0,1,1],\
                     [1,0,0],[1,0,1],[1,1,0]]
     lexica_concepts = []
@@ -52,10 +53,8 @@ def get_lexica_bins(lexica_list):
     bins = bins+gricean_bins
     return bins
 
-lex = get_lexica(3,3,False)
-bins = get_lexica_bins(lex)
-
 def get_prior(lexica_list):
+    """Learning prior over lexica: preference for simpler lexica"""
     concepts = [[0,0,1],[0,1,0],[0,1,1],\
                     [1,0,0],[1,0,1],[1,1,0]]
     cost = [3,8,4,4,10,5] #cost of each concept in 'concepts'
@@ -69,5 +68,5 @@ def get_prior(lexica_list):
         for concept_idx in xrange(len(current_lex)):
             lex_val *= concept_prob[concepts.index(list(current_lex[concept_idx]))]
         out.append(lex_val)
-    out = out + out #double for two types of linguistic behavior
+    out = out + out #double for two types of linguistic behavior: literal and Gricean
     return np.array(out) / np.sum(out)

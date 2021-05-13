@@ -1,15 +1,13 @@
-#This script generates the plots in Figure 2: Dynamics on a two-dimensional type space with four types
+#This script generates the plot in Figure 2: Illustration of individual and joint effects of
+#replicator and mutator dynamic, and parametrizations, on a two-dimensional space with four types
 
 import sys,os
-#lib_path = os.path.abspath(os.path.join('..')) #specifying path for player module
 sys.path.append('coevo/')
 from player import LiteralPlayer, GriceanPlayer
 import numpy as np
 import matplotlib.pyplot as plt
 from itertools import product, combinations
 import datetime
-
-
 
 def normalize(m):
     """returns row-normalized matrix m"""
@@ -81,7 +79,6 @@ def mut(p,q):
 
 
 def quiver_filled(lam,bias_para,post_para,k):
-    
     lexica = [np.array([[1.,0.],[0.,1.]]),np.array([[1.,0.],[1.,1.]])]
     types = [LiteralPlayer(lam,lex) for lex in lexica] + [GriceanPlayer(1,lam,lex) for lex in lexica]
     lexica_prior = learning_prior(types,bias_para)
@@ -147,16 +144,9 @@ def quiver_filled(lam,bias_para,post_para,k):
             axs[ax_n[i][0],ax_n[i][1]].axis('off')
     
     axs[1,1].annotate(r'$\lambda$ = %d, bias = %.2f, l = %d, k = %d' % (lam,bias_para,post_para,k), xy=(0.0,0.5), xycoords='data', fontsize=10)
-    
     axs[1,1].axis('off')
-    
-    print U
-    print '#'
-    print Q
     plt.tight_layout()
     plt.show()
-
-#quiver_filled(5,1.05,15,3)
 
 
 def quiver_contour(lam_lst,bias_para,post_para_lst,k,cont):
@@ -244,12 +234,9 @@ def quiver_contour(lam_lst,bias_para,post_para_lst,k,cont):
         fig.colorbar(axx,cax=cbar_ax)
     else:
         plt.tight_layout() #doesn't work well with subplots colorbar
-    plt.show()
-    plt.savefig('2d-dynamics.png')
+    plt.savefig('coevo/plots/2d-dynamics.png')
 
 
 lam_lst = [1,5,20,1,5,20] #list of lambda values to consider
 post_para_lst = [1,10,20,1,10,20] #list of gammas to consider 
-
 quiver_contour(lam_lst,1.05,post_para_lst,5,cont=True) #If True then contour, otherwise no contour background
-

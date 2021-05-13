@@ -1,7 +1,8 @@
-#Player behavior (literal/pragmatic sender is soft-maximizer)
+#Player behavior classes. Senders are soft-maximizers
 import numpy as np
 
 def normalize(m):
+    """returns row-normalized matrix m"""
     m = m / m.sum(axis=1)[:, np.newaxis]
     return m
 
