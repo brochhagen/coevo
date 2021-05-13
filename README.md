@@ -11,7 +11,7 @@ Get in touch if you have any questions!
 
 The code is written in python 2.7
 
-A conda environment, named *coevo*, is supplied all the necessary requirements to run the code
+A conda environment, named *coevo* and supplied within, is fulfills all the requirements to run the code
 
 To import and activate it, run:
 
@@ -32,7 +32,7 @@ Running `coevo/2d/2d-plots.py` generates Figure 2 of the paper.
 The plot is saved in `coevo/plots/2d-dynamics.png`
 
 <p align="center">
-  <img width="460" height="300" src="./plots/2d-dynamics">
+  <img width="460" height="300" src="https://raw.githubusercontent.com/brochhagen/coevo/main/plots/2d-dynamics.png">
 </p>
 . 
 
