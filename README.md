@@ -11,13 +11,13 @@ Get in touch if you have any questions!
 
 The code is written in python 2.7
 
-A conda environment, named *coevo* and supplied within, is fulfills all the requirements to run the code
+A conda environment, named *coevo* and supplied within, fulfills all the requirements to run the code
 
 To import and activate it, run:
 
 ```bash
 conda env create --file environment.yaml #import environment from YAML
-conda activate coevo #as usual
+conda activate coevo 
 ```
 
 
@@ -25,28 +25,29 @@ conda activate coevo #as usual
 ***
 
 ### Illustration of dynamics in a reduced type space
-The script `2d/2d-plots.py`, illustrates independent and joint effects of the replicator and mutator dynamic using a reduced type space.
+The script `2d/2d-plots.py` illustrates independent and joint effects of the replicator and the mutator dynamic using a reduced type space.
 
 Running `coevo/2d/2d-plots.py` generates Figure 2 of the paper. 
 
-The plot is saved in `coevo/plots/2d-dynamics.png`
 
 <p align="center">
   <img width="460" height="300" src="https://raw.githubusercontent.com/brochhagen/coevo/main/plots/2d-dynamics.png">
 </p>
-. 
 
-The posterior parameters and lambda values that are shown can be changed as arguments of  `quiver_contour()` (l. 240-242)
+The plot is saved in `coevo/plots/2d-dynamics.png`.
+ 
+
+The posterior parameters and lambda values can be changed as arguments of  `quiver_contour()` (l. 240-242).
 
 
 
 *** 
  
 ### Experiments
-The files to run the main experiments on full type space are found in `experiments/`
+The files to run the main experiments on a large type space are found in `experiments/`
 
-  * Run `run_experiments.py` to automatically compute dynamics for a large number of parameter settings. Otherwise,
-  * Call `run_dynamics()` from `rmd.py` to run individual experiments.
+  * Run `run_experiments.py` to automatically compute dynamics for a large number of parameter settings. Otherwise;
+  * call `run_dynamics()` from `rmd.py` to run individual experiments.
 
 
  Intermediate computations (U and Q matrices) are saved in `matrices/` to avoid recomputation. 
